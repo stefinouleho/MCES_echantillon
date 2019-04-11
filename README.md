@@ -1,5 +1,10 @@
 # MCES pour l'article ( 500 molécules de nombre de cycles supérieur ou égal à 3)
 
+
+
+*Make run  pour lancer le programme. 
+
+
 Calcule le degré de similarité avec l'algorithme MCES
 
 Contraintes :
