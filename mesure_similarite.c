@@ -2,7 +2,7 @@
 
 double last_chrono;
 int total_molecules = 500;
-float date = 30.00;
+float date = 20.00;
 int taille_limite = 100000;
 
 int * lecture_liste_molecules()
