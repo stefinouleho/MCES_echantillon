@@ -317,12 +317,12 @@ float mesure_similarite (int g1_chebi,int g2_chebi,struct molecule *M,double dat
 	int pos1,pos2;
 	pos1 = position_M(g1_chebi,M);
 	pos2 = position_M(g2_chebi,M);
-	
+	last_chrono = chrono();
 	graph g12 = graphe_produit(g1_chebi,g2_chebi,M);
-  int taille = nbnodes(g12);
-  int** liaisons = build_matrix_from_graph(g12);
-  if(taille == 0)
-    return 0;	
+ 	int taille = nbnodes(g12);
+ 	int** liaisons = build_matrix_from_graph(g12);
+ 	if(taille == 0)
+   		return 0;	
   
 	if( taille_limite != 0 && ( taille > taille_limite))
 	{
@@ -334,9 +334,9 @@ float mesure_similarite (int g1_chebi,int g2_chebi,struct molecule *M,double dat
 		int* clique = clique_max(g12, (long)date);
 
 		int* taille_graphe_commun = graphe_g12(g12,clique,M,g1_chebi,g2_chebi);
-    free(clique);
-	  int nb_atomes_communs = taille_graphe_commun[0];	
-	  int nb_laisons_communs = taille_graphe_commun[1];	
+   		free(clique);
+	 	int nb_atomes_communs = taille_graphe_commun[0];	
+	  	int nb_laisons_communs = taille_graphe_commun[1];	
 		
 		if(date == 0 || (chrono() - last_chrono <= date))
 		{
@@ -349,10 +349,10 @@ float mesure_similarite (int g1_chebi,int g2_chebi,struct molecule *M,double dat
 			similarite = -1;
 		}
 
-    free(taille_graphe_commun);
+  		free(taille_graphe_commun);
 	}
 
-  destroy(g12);
+  	destroy(g12);
 	return similarite;
 }
 
