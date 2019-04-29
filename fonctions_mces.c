@@ -128,7 +128,7 @@ graph graphe_produit(int g1_chebi,int g2_chebi,struct molecule *M)
 	for(i= 0; i < M[pos1].nb_atomes; i++) 
 		for(j= 0; j < M[pos2].nb_atomes;j++)
 			if( M[pos1].liste_atomes[i] == M[pos2].liste_atomes[j]) 
-        taille ++;
+        		taille ++;
 	
 	//couple de liaisons entre les nouveaux sommets
 	struct couple * couple_atome = construction_couples(M,pos1,pos2,taille);
