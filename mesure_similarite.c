@@ -27,6 +27,28 @@ int * lecture_liste_molecules()
 			
 }
 
+int * lecture_molecules_OD()
+{
+	int *liste = malloc ( OD * sizeof(int));
+	FILE *F = fopen("fichiers/molecules_OD.data","r");
+	
+	if( F == NULL)
+	{
+		fprintf(stdout, " Cannot open the file fichiers/molecules_OD.data");
+		exit(15);
+	}
+	int i; 
+	for ( i = 0; i < OD; i++)
+	{
+		fscanf(F, "%d",&liste[i]);
+	}
+	
+	fclose(F);
+	
+	return liste;
+			
+}
+
 void sauvegarde_compteur(int i , int j)
 {
 //sauvegarde des indices au cas ou le ptogramme serait interompu 
@@ -125,27 +147,28 @@ int main(int argc, char *argv[])
 	fclose(F);
 	
 	int *liste_molecules = lecture_liste_molecules();
+	int *mol_OD = lecture_molecules_OD();
 	
 	int i,j;
 	
 	float r,start,stop;
 	
 	int pos1,pos2;
-	for ( i = numero ; i < total_molecules; i++)
+	for ( i = numero ; i < OD; i++)
 	{
 		
-		fprintf(stdout,"\r%5d / %d",i,total_molecules);
+		fprintf(stdout,"\r%5d / %d",i,OD);
 		fflush(stdout); 
-		for ( j = indice ; j < i ; j++)
+		for ( j = indice ; j < total_molecules ; j++)
 		{
 			
 			
-			pos1 = position_M(liste_molecules[i],M);
+			pos1 = position_M(mol_OD[i],M);
 			pos2 = position_M(liste_molecules[j],M);
 			M[pos1]= elimination_feuilles(M[pos1]);
 			M[pos2]= elimination_feuilles(M[pos2]);
 			start = chrono();
-			r = mesure_similarite( liste_molecules[i], liste_molecules[j],M, date, taille_limite);
+			r = mesure_similarite( mol_OD[i], liste_molecules[j],M, date, taille_limite);
 			stop = chrono();
 			
 			char fichier[256];
@@ -188,6 +211,7 @@ int main(int argc, char *argv[])
 	
 	//liberation de la memoire
 	free(liste_molecules);
+	free(mol_OD);
 	int nb_mol;
 	printf("\n3. Libération de la mémoire : %.3lf s\n",chrono());
 

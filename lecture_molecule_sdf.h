@@ -5,6 +5,7 @@
 
 #define NB_ATOM_NAMES 119
 #define NB_MOLECULES 90130
+#define OD 7
 
 struct nom_at 
 { 
