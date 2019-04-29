@@ -159,6 +159,7 @@ int main(int argc, char *argv[])
 		
 		fprintf(stdout,"\r%5d / %d",i,OD);
 		fflush(stdout); 
+
 		for ( j = indice ; j < total_molecules ; j++)
 		{
 			
@@ -169,6 +170,51 @@ int main(int argc, char *argv[])
 			M[pos2]= elimination_feuilles(M[pos2]);
 			start = chrono();
 			r = mesure_similarite( mol_OD[i], liste_molecules[j],M, date, taille_limite);
+			stop = chrono();
+			
+			char fichier[256];
+			//sprintf(fichier,"Dossier/%d_%d.result",i,j);
+			sprintf(fichier,"Dossier/similarite.result");
+			
+			F = fopen(fichier,"a");
+			if( F == NULL)
+			{
+				fprintf(stdout, "Cannot open the file %s\n",fichier);
+				exit(19);
+			}
+			
+			sprintf(fichier,"Dossier/temps.result");
+			FILE *G = fopen(fichier,"a");
+			if( G == NULL)
+			{
+				fprintf(stdout, " Cannot open the file %s\n",fichier);
+				exit(19);
+			}
+			fprintf(F,"%.2f	",r);
+			fprintf(G,"%.2f	",stop -start);
+			
+			if( j == i - 1)
+			{
+				fprintf(F,"\n");
+				fprintf(G,"\n");
+			}
+				
+			fclose(F);
+			fclose(G);
+			
+			sauvegarde_compteur(i,j);
+		}
+
+		for ( j = 0 ; j < numero ; j++)
+		{
+			
+			
+			pos1 = position_M(mol_OD[i],M);
+			pos2 = position_M(mol_OD[j],M);
+			M[pos1]= elimination_feuilles(M[pos1]);
+			M[pos2]= elimination_feuilles(M[pos2]);
+			start = chrono();
+			r = mesure_similarite( mol_OD[i], mol_OD[j],M, date, taille_limite);
 			stop = chrono();
 			
 			char fichier[256];
