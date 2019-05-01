@@ -124,12 +124,6 @@ void sauvegarde_compteur(int i , int j)
 int main(int argc, char *argv[])
 {
 	
-	
-	if( argc != 6){
-		fprintf(stdout,"Missing arguments (num chebi1 , num chebi 2 ( 0  for all) ,type, date , lenght limit )\n");
-		exit(20);
-	}
-
 	//lecture des molecules dans le fichier chebi_lite.sdf
 	struct molecule *M = lecture_fichier_chebi();
 	

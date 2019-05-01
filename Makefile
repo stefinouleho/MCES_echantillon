@@ -7,7 +7,7 @@ CXX = g++ -Wall -Wextra
 all: mesure_similarite
 
 run: mesure_similarite
-	./mesure_similarite 28973 4672 2 10 1600
+	./mesure_similarite 
 
 init: 
 	rm -rf Dossier
