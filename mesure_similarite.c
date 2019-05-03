@@ -152,6 +152,7 @@ int main(int argc, char *argv[])
 	{
 		fprintf(stdout,"\r%5d / %d",i,OD);
 		fflush(stdout); 
+	
 
 		for ( j = indice ; j < total_molecules ; j++)
 		{
@@ -186,7 +187,7 @@ int main(int argc, char *argv[])
 			fprintf(F,"%.2f	",r);
 			fprintf(G,"%.2f	",stop -start);
 			
-			if( j == i - 1)
+			if( i == 0 && j == total_molecules - 1)
 			{
 				fprintf(F,"\n");
 				fprintf(G,"\n");
@@ -194,12 +195,10 @@ int main(int argc, char *argv[])
 				
 			fclose(F);
 			fclose(G);
-			
 			sauvegarde_compteur(i,j);
 		}
 		for ( j = 0 ; j < i ; j++)
 		{
-			
 			
 			pos1 = position_M(mol_OD[i],M);
 			pos2 = position_M(mol_OD[j],M);
@@ -242,7 +241,6 @@ int main(int argc, char *argv[])
 			sauvegarde_compteur(i,j);
 		}
 		indice = 0;
-		
 	} 
 	
 	
