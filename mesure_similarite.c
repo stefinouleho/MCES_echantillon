@@ -150,7 +150,6 @@ int main(int argc, char *argv[])
 	int pos1,pos2;
 	for ( i = numero ; i < OD; i++)
 	{
-		
 		fprintf(stdout,"\r%5d / %d",i,OD);
 		fflush(stdout); 
 
@@ -198,8 +197,7 @@ int main(int argc, char *argv[])
 			
 			sauvegarde_compteur(i,j);
 		}
-
-		for ( j = 0 ; j < numero ; j++)
+		for ( j = 0 ; j < i ; j++)
 		{
 			
 			
